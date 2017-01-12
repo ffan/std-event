@@ -13,22 +13,22 @@ class Event implements EventInterface
     /**
      * @var string 事件名称
      */
-    private $_name;
+    private $event_name;
 
     /**
      * @var null|string|object
      */
-    private $_target;
+    private $event_target;
 
     /**
      * @var null|array 参数列表
      */
-    private $_params = [];
+    private $event_params = [];
 
     /**
      * @var bool 是否已经停止冒泡
      */
-    private $_is_propagation = false;
+    private $is_propagation = false;
 
     /**
      * Get event name
@@ -37,7 +37,7 @@ class Event implements EventInterface
      */
     public function getName()
     {
-        return $this->_name;
+        return $this->event_name;
     }
 
     /**
@@ -47,7 +47,7 @@ class Event implements EventInterface
      */
     public function getTarget()
     {
-        return $this->_target;
+        return $this->event_target;
     }
 
     /**
@@ -57,7 +57,7 @@ class Event implements EventInterface
      */
     public function getParams()
     {
-        return $this->_params;
+        return $this->event_params;
     }
 
     /**
@@ -68,7 +68,7 @@ class Event implements EventInterface
      */
     public function getParam($name)
     {
-        return isset($this->_params[$name]) ? $this->_params[$name] : null;
+        return isset($this->event_params[$name]) ? $this->event_params[$name] : null;
     }
 
     /**
@@ -79,7 +79,7 @@ class Event implements EventInterface
      */
     public function setName($name)
     {
-        $this->_name = $name;
+        $this->event_name = $name;
     }
 
     /**
@@ -90,7 +90,7 @@ class Event implements EventInterface
      */
     public function setTarget($target)
     {
-        $this->_target = $target;
+        $this->event_target = $target;
     }
 
     /**
@@ -101,7 +101,7 @@ class Event implements EventInterface
      */
     public function setParams(array $params)
     {
-        $this->_params = $params;
+        $this->event_params = $params;
     }
 
     /**
@@ -111,7 +111,7 @@ class Event implements EventInterface
      */
     public function stopPropagation($flag)
     {
-        $this->_is_propagation = (bool)$flag;
+        $this->is_propagation = (bool)$flag;
     }
 
     /**
@@ -121,6 +121,6 @@ class Event implements EventInterface
      */
     public function isPropagationStopped()
     {
-        return $this->_is_propagation;
+        return $this->is_propagation;
     }
 }

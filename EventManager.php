@@ -14,7 +14,7 @@ class EventManager implements EventManagerInterface
     /**
      * @var array 事件列表
      */
-    private $_event_list = [];
+    private $event_list = [];
 
     /**
      * 设置一个监听事件
@@ -28,11 +28,11 @@ class EventManager implements EventManagerInterface
     {
         //数据结构[$priority, $callback, $priority, $callback, $priority, $callback]
         //如果没有事件
-        if (!isset($this->_event_list[$event])) {
-            $this->_event_list[$event] = array($priority, $callback);
+        if (!isset($this->event_list[$event])) {
+            $this->event_list[$event] = array($priority, $callback);
         } //如果已经有事件了，就要按照优化级排序存放
         else {
-            $current_list = &$this->_event_list[$event];
+            $current_list = &$this->event_list[$event];
             //求出当前事件长度
             $len = count($current_list);
             //先遍历一次，该callback是否已经存在
@@ -77,10 +77,10 @@ class EventManager implements EventManagerInterface
      */
     public function detach($event, callable $callback)
     {
-        if (!isset($this->_event_list[$event])) {
+        if (!isset($this->event_list[$event])) {
             return false;
         }
-        $tmp_list = &$this->_event_list[$event];
+        $tmp_list = &$this->event_list[$event];
         $len = count($tmp_list);
         //只有偶数项 才是callback, 奇数项是 priority
         for ($i = 1; $i < $len; $i += 2) {
@@ -100,7 +100,7 @@ class EventManager implements EventManagerInterface
      */
     public function clearListeners($event)
     {
-        unset($this->_event_list[$event]);
+        unset($this->event_list[$event]);
     }
 
     /**
@@ -116,22 +116,22 @@ class EventManager implements EventManagerInterface
         if (is_string($event) && strlen($event) > 0) {
             $eve_name = $event;
             $event = new Event();
-            $event->setName($eve_name);
+            $event->setEveName($eve_name);
             $event->setParams($argv);
             if (null !== $target) {
                 $event->setTarget($target);
             }
         } else {
-            $eve_name = $event->getName();
+            $eve_name = $event->getEveName();
         }
         if (!is_object($event) || !($event instanceof EventInterface)) {
             trigger_error('event is not instanceof EventInterface', E_USER_WARNING);
             return;
         }
-        if (!isset($this->_event_list[$eve_name])) {
+        if (!isset($this->event_list[$eve_name])) {
             return;
         }
-        $tmp_list = $this->_event_list[$eve_name];
+        $tmp_list = $this->event_list[$eve_name];
         $len = count($tmp_list);
         for ($i = 1; $i < $len; $i += 2) {
             call_user_func($tmp_list[$i], $event);

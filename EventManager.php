@@ -12,6 +12,11 @@ class EventManager implements EventManagerInterface
 {
 
     /**
+     * @var EventManagerInterface 单例
+     */
+    private static $single_instance;
+    
+    /**
      * @var array 事件列表
      */
     private $event_list = [];
@@ -136,5 +141,17 @@ class EventManager implements EventManagerInterface
         for ($i = 1; $i < $len; $i += 2) {
             call_user_func($tmp_list[$i], $event);
         }
+    }
+
+    /**
+     * 实例
+     * @return EventManager
+     */
+    public static function instance()
+    {
+        if (!self::$single_instance) {
+            self::$single_instance = new self();
+        }
+        return self::$single_instance;
     }
 }

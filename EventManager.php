@@ -116,13 +116,13 @@ class EventManager implements EventManagerInterface
         if (is_string($event) && strlen($event) > 0) {
             $eve_name = $event;
             $event = new Event();
-            $event->setEveName($eve_name);
+            $event->setName($eve_name);
             $event->setParams($argv);
             if (null !== $target) {
                 $event->setTarget($target);
             }
         } else {
-            $eve_name = $event->getEveName();
+            $eve_name = $event->getName();
         }
         if (!is_object($event) || !($event instanceof EventInterface)) {
             trigger_error('event is not instanceof EventInterface', E_USER_WARNING);

@@ -9,17 +9,17 @@ class testCallback
 {
     public static function a(EventInterface $eve)
     {
-        echo 'I am callback a event:' . $eve->getEveName() . PHP_EOL;
+        echo 'I am callback a event:' . $eve->getName() . PHP_EOL;
     }
 
     public static function b(EventInterface $eve)
     {
-        echo 'I am callback b event:' . $eve->getEveName() . PHP_EOL;
+        echo 'I am callback b event:' . $eve->getName() . PHP_EOL;
     }
 
     public function c(EventInterface $eve)
     {
-        echo 'I am callback c event:' . $eve->getEveName() . PHP_EOL;
+        echo 'I am callback c event:' . $eve->getName() . PHP_EOL;
     }
 }
 

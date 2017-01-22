@@ -15,7 +15,7 @@ class EventManager implements EventManagerInterface
      * @var EventManagerInterface 单例
      */
     private static $single_instance;
-    
+
     /**
      * @var array 事件列表
      */
@@ -58,16 +58,19 @@ class EventManager implements EventManagerInterface
             } //最坏的情况，老老实实的排序
             else {
                 $new_list = [];
+                $is_add = false;
                 for ($i = 0; $i < $len; ++$i) {
                     $tmp_priority = $current_list[$i++];
                     $tmp_callback = $current_list[$i];
-                    if ($tmp_priority < $priority) {
+                    if (!$is_add && $tmp_priority < $priority) {
+                        $is_add = true;
                         $new_list[] = $priority;
                         $new_list[] = $callback;
                     }
                     $new_list[] = $tmp_priority;
                     $new_list[] = $tmp_callback;
                 }
+                $this->event_list[$event] = $new_list;
             }
         }
         return true;
@@ -88,13 +91,21 @@ class EventManager implements EventManagerInterface
         $tmp_list = &$this->event_list[$event];
         $len = count($tmp_list);
         //只有偶数项 才是callback, 奇数项是 priority
+        $is_find = false;
         for ($i = 1; $i < $len; $i += 2) {
-            if ($callback === $tmp_list[$i]) {
-                unset($tmp_list[$i - 1], $tmp_list[$i]);
-                return true;
+            //如果已经找到了，向前移两位
+            if ($is_find || $callback === $tmp_list[$i]) {
+                $is_find = true;
+                if ($i + 2 < $len) {
+                    $tmp_list[$i - 1] = $tmp_list[$i + 1];
+                    $tmp_list[$i] = $tmp_list[$i + 2];
+                }
             }
         }
-        return false;
+        if ($is_find) {
+            unset($tmp_list[$len - 2], $tmp_list[$len - 1]);
+        }
+        return $is_find;
     }
 
     /**

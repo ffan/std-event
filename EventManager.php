@@ -1,4 +1,5 @@
 <?php
+
 namespace ffan\php\event;
 
 use Psr\EventManager\EventInterface;
@@ -124,16 +125,18 @@ class EventManager implements EventManagerInterface
      *
      * @param  string|EventInterface $event 可以直接传递一个event事件过来
      * @param  object|string $target 事件源
-     * @param  array|object $argv 事件参数
+     * @param  mixed $argv 事件参数
      * @return mixed
      */
-    public function trigger($event, $target = null, $argv = array())
+    public function trigger($event, $target = null, $argv = null)
     {
         if (is_string($event) && strlen($event) > 0) {
             $eve_name = $event;
             $event = new Event();
             $event->setName($eve_name);
-            $event->setParams($argv);
+            if (null !== $argv) {
+                $event->setParams($argv);
+            }
             if (null !== $target) {
                 $event->setTarget($target);
             }

@@ -54,10 +54,10 @@ interface EventInterface
     /**
      * Set event parameters
      *
-     * @param  array $params
+     * @param  mixed $params
      * @return void
      */
-    public function setParams(array $params);
+    public function setParams($params);
 
     /**
      * Indicate whether or not to stop propagating this event

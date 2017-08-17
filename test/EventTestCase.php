@@ -1,23 +1,22 @@
 <?php
 namespace ffan\php\event;
 
-use Psr\EventManager\EventInterface;
 
 require_once '../vendor/autoload.php';
 
 class testCallback
 {
-    public static function a(EventInterface $eve)
+    public static function a($eve)
     {
         echo 'I am callback a event:' . $eve->getName() . PHP_EOL;
     }
 
-    public static function b(EventInterface $eve)
+    public static function b($eve)
     {
         echo 'I am callback b event:' . $eve->getName() . PHP_EOL;
     }
 
-    public function c(EventInterface $eve)
+    public function c($eve)
     {
         echo 'I am callback c event:' . $eve->getName() . PHP_EOL;
     }

@@ -2,18 +2,15 @@
 
 namespace ffan\php\event;
 
-use Psr\EventManager\EventInterface;
-use Psr\EventManager\EventManagerInterface;
-
 /**
  * Class EventManager
  * @package ffan\php\event
  */
-class EventManager implements EventManagerInterface
+class EventManager
 {
 
     /**
-     * @var EventManagerInterface 单例
+     * @var EventManager 单例
      */
     private static $single_instance;
 
@@ -123,34 +120,27 @@ class EventManager implements EventManagerInterface
     /**
      * 触发一次事件
      *
-     * @param  string|EventInterface $event 可以直接传递一个event事件过来
+     * @param  string $event_name 事件名称
      * @param  object|string $target 事件源
      * @param  mixed $argv 事件参数
-     * @return mixed
      */
-    public function trigger($event, $target = null, $argv = null)
+    public function trigger($event_name, $target = null, $argv = null)
     {
-        if (is_string($event) && strlen($event) > 0) {
-            $eve_name = $event;
-            $event = new Event();
-            $event->setName($eve_name);
-            if (null !== $argv) {
-                $event->setParams($argv);
-            }
-            if (null !== $target) {
-                $event->setTarget($target);
-            }
-        } else {
-            $eve_name = $event->getName();
+        if (empty($event_name) || !is_string($event_name)) {
+            throw new \InvalidArgumentException('Invalid event_name');
         }
-        if (!is_object($event) || !($event instanceof EventInterface)) {
-            trigger_error('event is not instanceof EventInterface', E_USER_WARNING);
+        $event = new Event();
+        $event->setName($event_name);
+        if (null !== $argv) {
+            $event->setParams($argv);
+        }
+        if (null !== $target) {
+            $event->setTarget($target);
+        }
+        if (!isset($this->event_list[$event_name])) {
             return;
         }
-        if (!isset($this->event_list[$eve_name])) {
-            return;
-        }
-        $tmp_list = $this->event_list[$eve_name];
+        $tmp_list = $this->event_list[$event_name];
         $len = count($tmp_list);
         for ($i = 1; $i < $len; $i += 2) {
             call_user_func($tmp_list[$i], $event);

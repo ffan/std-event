@@ -1,13 +1,11 @@
 <?php
 namespace ffan\php\event;
 
-use Psr\EventManager\EventInterface;
-
 /**
  * Class Event
  * @package ffan\php\event;
  */
-class Event implements EventInterface
+class Event
 {
 
     /**
@@ -21,9 +19,9 @@ class Event implements EventInterface
     private $event_target;
 
     /**
-     * @var null|array 参数列表
+     * @var mixed 参数列表
      */
-    private $event_params = [];
+    private $event_params;
 
     /**
      * @var bool 是否已经停止冒泡
@@ -63,7 +61,7 @@ class Event implements EventInterface
     /**
      * 按名称获取参数
      *
-     * @param  string $name
+     * @param string $name
      * @return mixed
      */
     public function getParam($name)
@@ -74,7 +72,7 @@ class Event implements EventInterface
     /**
      * 设置event的名称
      *
-     * @param  string $name
+     * @param string $name
      * @return void
      */
     public function setName($name)
@@ -85,7 +83,7 @@ class Event implements EventInterface
     /**
      * 设置事件源
      *
-     * @param  null|string|object $target
+     * @param null|string|object $target
      * @return void
      */
     public function setTarget($target)
@@ -96,10 +94,10 @@ class Event implements EventInterface
     /**
      * 设置参数列表
      *
-     * @param  array $params
+     * @param mixed $params
      * @return void
      */
-    public function setParams(array $params)
+    public function setParams($params)
     {
         $this->event_params = $params;
     }
@@ -107,7 +105,7 @@ class Event implements EventInterface
     /**
      * 是否已经停止冒泡了
      *
-     * @param  bool $flag
+     * @param bool $flag
      */
     public function stopPropagation($flag)
     {

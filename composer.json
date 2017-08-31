@@ -1,9 +1,9 @@
 {
-  "name": "ffan/php-event",
-  "description": "FFan psr event",
+  "name": "ffan/std-event",
+  "description": "FFan std event",
   "keywords": [
     "ffan",
-    "php",
+    "std",
     "event"
   ],
   "type": "composer",
@@ -19,8 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "ffan\\php\\event\\": "",
-      "Psr\\EventManager\\": ""
+      "FFan\\Std\\Event\\": "src"
     }
   },
   "minimum-stability": "dev",

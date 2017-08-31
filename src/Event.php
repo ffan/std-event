@@ -1,13 +1,13 @@
 <?php
-namespace ffan\php\event;
+
+namespace FFan\Std\Event;
 
 /**
  * Class Event
- * @package ffan\php\event;
+ * @package FFan\Std\Event
  */
 class Event
 {
-
     /**
      * @var string 事件名称
      */

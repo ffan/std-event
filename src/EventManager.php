@@ -1,14 +1,13 @@
 <?php
 
-namespace ffan\php\event;
+namespace FFan\Std\Event;
 
 /**
  * Class EventManager
- * @package ffan\php\event
+ * @package FFan\Std\Event
  */
 class EventManager
 {
-
     /**
      * @var EventManager 单例
      */

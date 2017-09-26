@@ -9,6 +9,11 @@ namespace FFan\Std\Event;
 class EventManager
 {
     /**
+     * shutdown 事件
+     */
+    const SHUTDOWN_EVENT = 'ffan-shutdown';
+
+    /**
      * @var EventManager 单例
      */
     private static $single_instance;
@@ -17,6 +22,14 @@ class EventManager
      * @var array 事件列表
      */
     private $event_list = [];
+
+    /**
+     * EventManager constructor.
+     */
+    public function __construct()
+    {
+        register_shutdown_function(array($this, 'shutdownEvent'));
+    }
 
     /**
      * 设置一个监听事件
@@ -144,6 +157,14 @@ class EventManager
         for ($i = 1; $i < $len; $i += 2) {
             call_user_func($tmp_list[$i], $event);
         }
+    }
+
+    /**
+     * shutdown 事件
+     */
+    public function shutdownEvent()
+    {
+        $this->trigger(self::SHUTDOWN_EVENT);
     }
 
     /**

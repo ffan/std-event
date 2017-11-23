@@ -51,14 +51,6 @@ class EventDriver
     }
 
     /**
-     * 资源回收，类的属性已经可安全使用，不由于__destruct，destruct时属性可能提前__destruct了
-     */
-    public function __exit()
-    {
-
-    }
-
-    /**
      * shutdown_function
      */
     public static function shutdown()

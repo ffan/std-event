@@ -1,10 +1,10 @@
 <?php
 
-namespace FFan\Std\Event;
+namespace UiStd\Event;
 
 /**
  * Class Transaction 事务接口
- * @package FFan\Std\Event
+ * @package UiStd\Event
  */
 class Transaction extends EventDriver
 {

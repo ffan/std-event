@@ -1,9 +1,10 @@
 {
-  "name": "ffan/std-event",
-  "description": "FFan std event",
+  "name": "uistd/event",
+  "description": "UI Service 框架事件管理组件",
   "keywords": [
-    "ffan",
-    "std",
+    "ui service",
+    "uis",
+    "uistd",
     "event"
   ],
   "type": "composer",
@@ -19,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "FFan\\Std\\Event\\": "src"
+      "UiStd\\Event\\": "src"
     }
   },
   "minimum-stability": "stable",

@@ -1,6 +1,6 @@
 <?php
-use FFan\Std\Event\Event;
-use FFan\Std\Event\EventManager;
+use UiStd\Event\Event;
+use UiStd\Event\EventManager;
 
 require_once '../vendor/autoload.php';
 

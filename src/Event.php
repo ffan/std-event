@@ -1,10 +1,10 @@
 <?php
 
-namespace FFan\Std\Event;
+namespace UiStd\Event;
 
 /**
  * Class Event
- * @package FFan\Std\Event
+ * @package UiStd\Event
  */
 class Event
 {

@@ -1,17 +1,17 @@
 <?php
 
-namespace FFan\Std\Event;
+namespace UiStd\Event;
 
 /**
  * Class EventManager
- * @package FFan\Std\Event
+ * @package UiStd\Event
  */
 class EventManager
 {
     /**
      * shutdown 事件
      */
-    const SHUTDOWN_EVENT = 'ffan-shutdown';
+    const SHUTDOWN_EVENT = 'uis-shutdown';
 
     /**
      * @var EventManager 单例

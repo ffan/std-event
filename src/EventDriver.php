@@ -1,11 +1,11 @@
 <?php
 
-namespace FFan\Std\Event;
+namespace UiStd\Event;
 
 /**
  * Class EventDriver 事件驱动
  * 由于PHP的析构函数非常诡异，不可用于业务
- * @package FFan\Std\Event
+ * @package UiStd\Event
  */
 class EventDriver
 {
